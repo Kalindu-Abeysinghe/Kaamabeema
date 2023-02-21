@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:sarah/models/food_information.dart';
-import 'package:sarah/navbarScreens/cart_page.dart';
-import 'package:sarah/navbarScreens/food_scan_page.dart';
-import 'package:sarah/navbarScreens/home_page.dart';
-import 'package:sarah/navbarScreens/user_profile_page.dart';
+import 'package:sarah/screens/navbarScreens/diet_preferences/diet_preferences_one.dart';
+import 'package:sarah/screens/navbarScreens/diet_preferences/diet_preferences_two.dart';
+import 'package:sarah/screens/navbarScreens/diet_preferences/diet_preferences_widget.dart';
+import 'package:sarah/screens/navbarScreens/cart_page.dart';
+import 'package:sarah/screens/navbarScreens/food_scan_page.dart';
+import 'package:sarah/screens/navbarScreens/home_page.dart';
+import 'package:sarah/screens/navbarScreens/user_profile_page.dart';
 import 'package:sarah/widgets/foodInformation/food_information.dart';
 import 'package:sarah/widgets/foodInformation/food_information_panel.dart';
 
 void main() {
+  // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(MyApp());
 }
 
@@ -18,6 +23,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  PageController _pageController = PageController();
   int _currentTabIndex = 0;
 
   List<Widget> _bottomNavPages = [
@@ -27,9 +33,29 @@ class _MyAppState extends State<MyApp> {
     UserProfilePage()
   ];
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _pageController.dispose();
+  }
+
   void _changeBottomTabPages(int value) {
     setState(() {
       _currentTabIndex = value;
+      _pageController.jumpToPage(_currentTabIndex);
+    });
+  }
+
+  void _changePage(int index) {
+    setState(() {
+      _currentTabIndex = index;
     });
   }
 
@@ -39,7 +65,7 @@ class _MyAppState extends State<MyApp> {
     //   Navigator.of(context).pushNamed('/food-information',arguments: {'foodName':'Kottu'});
     // }
 
-    RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
+    // RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -61,7 +87,11 @@ class _MyAppState extends State<MyApp> {
                       borderRadius: BorderRadius.circular(40)),
                   backgroundColor: Color.fromRGBO(53, 115, 133, 1)))),
       home: Scaffold(
-        body: _bottomNavPages[_currentTabIndex],
+        body: PageView(
+          controller: _pageController,
+          onPageChanged: _changePage,
+          children: _bottomNavPages,
+        ),
         backgroundColor: Colors.grey[300],
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.only(left: 8, right: 8, bottom: 16),
@@ -95,6 +125,8 @@ class _MyAppState extends State<MyApp> {
       ),
       routes: {
         '/food-information': (ctx) => FoodInformation(),
+        DietPreferencesOne.route: ((context) => const DietPreferencesOne()),
+        DietPreferencesTwo.route: (context) => DietPreferencesTwo()
       },
     );
   }

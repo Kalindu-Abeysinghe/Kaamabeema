@@ -49,9 +49,9 @@ class StaticData {
     'Gotukola Sambol': 'None',
     'Beetroot Curry': 'None',
     'Dhal Curry': 'None',
-    'Pittu':'None',
-    'Wambatu Moju':'None',
-    'Kiribath':'None'
+    'Pittu': 'None',
+    'Wambatu Moju': 'None',
+    'Kiribath': 'None'
   };
 
   static Map<String, String> optionalIngredients = {
@@ -139,4 +139,54 @@ class StaticData {
     }
     return optionalIngredientsList;
   }
+
+  static List<String> dietPreferencesPartOne = [
+    'Omnivore',
+    'Carnivore',
+    'Pescetarian',
+    'Vegetarian',
+    'Vegan',
+    'Flexitarian',
+    'Gluten-free',
+    'Dairy-free',
+    'Keto',
+    'Paleo',
+    'Diabetes friendly',
+    'Low Carb',
+    'Low fat',
+    'Low processed sugar',
+    'Low processed food',
+    'Test 1',
+    'Test 2',
+    'Test 3',
+    'Test 4',
+    'Test 5',
+    'Test 6',
+    'Test 7',
+    'Test 8',
+    'Test 9',
+    'Test 10',
+    'Test 11',
+    'Test 12',
+    'Test 13',
+    'Test 14',
+    'Test 15',
+    'Test 16',
+    'Test 17',
+    'Test 18',
+
+  ];
+
+  static List<String> dietPreferencesPartTwo = [
+    'Lactose Intolerance',
+    'Gluten Intolerance',
+    'Diabetic',
+    'Egg Intolerance',
+    'Nut Intolerance',
+    'Fish Intolerance',
+    'Crustacean Intolerance',
+    'Shellfish Intolerance',
+    'Soy Intolerance',
+    'Sesame Intolerance'
+  ];
 }

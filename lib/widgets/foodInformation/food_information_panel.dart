@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sarah/data/static_data.dart';
 
 class FoodInformationPanel extends StatefulWidget {
   String informationTitle;
@@ -55,7 +54,7 @@ class _FoodInformationPanelState extends State<FoodInformationPanel> {
             );
           })),
     );
-  }
+  } 
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +116,7 @@ class _FoodInformationPanelState extends State<FoodInformationPanel> {
     //     ],
     //   ),
     // );
-
+    
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(children: [
